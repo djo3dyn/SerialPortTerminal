@@ -1,0 +1,84 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SerialPortUtility" GeneratedClassName="AppSetting">
+  <Profiles />
+  <Settings>
+    <Setting Name="ComName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">COM1</Value>
+    </Setting>
+    <Setting Name="ComStopBits" Type="System.IO.Ports.StopBits" Scope="User">
+      <Value Profile="(Default)">One</Value>
+    </Setting>
+    <Setting Name="ComBaudRate" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">9600</Value>
+    </Setting>
+    <Setting Name="ComDataBit" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">8</Value>
+    </Setting>
+    <Setting Name="ComParity" Type="System.IO.Ports.Parity" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="ComHandshake" Type="System.IO.Ports.Handshake" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="LogTXColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Blue</Value>
+    </Setting>
+    <Setting Name="LogRXColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="LogInfoColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Orange</Value>
+    </Setting>
+    <Setting Name="LogWordWrap" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LogASCII" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LogDEC" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LogTime" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LogHEX" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="LogBIN" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="SendType" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SendAppend" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="LogTxName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">TX</Value>
+    </Setting>
+    <Setting Name="LogRxName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">RX</Value>
+    </Setting>
+    <Setting Name="LogTxFont" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Courier New, 9pt</Value>
+    </Setting>
+    <Setting Name="LogRxFont" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Courier New, 9pt</Value>
+    </Setting>
+    <Setting Name="LogTxEn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LogInfoEn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LogInfFont" Type="System.Drawing.Font" Scope="User">
+      <Value Profile="(Default)">Courier New, 9pt</Value>
+    </Setting>
+    <Setting Name="LogTxNameEn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LogRxNameEn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
