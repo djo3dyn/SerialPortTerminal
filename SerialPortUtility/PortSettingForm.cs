@@ -9,11 +9,14 @@ using System.IO.Ports;
 
 namespace SerialPortUtility
 {
-    public partial class setting_frm : Form
+    public partial class PortSettingForm : Form
     {
-        public setting_frm()
+        public SerialPort tempPortSetting;
+        public PortSettingForm()
         {
             InitializeComponent();
+
+            tempPortSetting = new SerialPort();
 
             // Get a list of serial port names.
             string[] ports = SerialPort.GetPortNames();
@@ -43,22 +46,24 @@ namespace SerialPortUtility
         private void set_btn_Click(object sender, EventArgs e)
         {
             set_port();
+            this.DialogResult = DialogResult.OK;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+            this.DialogResult = DialogResult.Cancel;
         }
 
         private void set_port()
         {
-            if (main_frm.main_port.IsOpen == true)
+            if (MainForm.mainPort.IsOpen == true)
             {
                 try
                 {
-                    main_frm.main_port.Close();
+                    MainForm.mainPort.Close();
                     perfom_set_port();
-                    main_frm.main_port.Open();
+                    MainForm.mainPort.Open();
                 }
                 catch (Exception ex)
                 {
@@ -108,13 +113,12 @@ namespace SerialPortUtility
         {
             try
             {
-                main_frm.main_port.PortName = port_cmb.Text;
-                main_frm.main_port.BaudRate = Convert.ToInt32(baud_cmb.Text);
-                main_frm.main_port.DataBits = Convert.ToInt32(data_cmb.Text);
-                main_frm.main_port.StopBits = m_stopbit;
-                main_frm.main_port.Parity = m_parity;
-                main_frm.main_port.Handshake = m_handshake;
-                //main_frm.main_port.RtsEnable = true;
+                MainForm.mainPort.PortName = port_cmb.Text;
+                MainForm.mainPort.BaudRate = Convert.ToInt32(baud_cmb.Text);
+                MainForm.mainPort.DataBits = Convert.ToInt32(data_cmb.Text);
+                MainForm.mainPort.StopBits = m_stopbit;
+                MainForm.mainPort.Parity = m_parity;
+                MainForm.mainPort.Handshake = m_handshake;
             }
             catch (System.IO.IOException ex)
             {

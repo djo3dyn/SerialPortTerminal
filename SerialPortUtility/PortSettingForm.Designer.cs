@@ -1,6 +1,6 @@
 ﻿namespace SerialPortUtility
 {
-    partial class setting_frm
+    partial class PortSettingForm
     {
         /// <summary>
         /// Required designer variable.
@@ -208,7 +208,7 @@
             this.flow_cmb.TabIndex = 21;
             this.flow_cmb.SelectedIndexChanged += new System.EventHandler(this.flow_cmb_SelectedIndexChanged);
             // 
-            // setting_frm
+            // PortSettingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -228,7 +228,7 @@
             this.Controls.Add(this.port_cmb);
             this.Controls.Add(this.set_btn);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "setting_frm";
+            this.Name = "PortSettingForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Port Setting";
             this.ResumeLayout(false);

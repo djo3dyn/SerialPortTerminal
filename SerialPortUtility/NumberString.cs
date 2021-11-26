@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NumberFromString
+namespace SerialPortUtility
 {
-    class numberfromstring
+    public class NumberString
     {
         // String To Number
         private string input_string;

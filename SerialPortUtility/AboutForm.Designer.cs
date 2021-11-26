@@ -1,7 +1,7 @@
 ﻿
 namespace SerialPortUtility
 {
-    partial class about_form
+    partial class AboutForm
     {
         /// <summary>
         /// Required designer variable.
@@ -53,7 +53,7 @@ namespace SerialPortUtility
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(213, 18);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Serial Port Terminal v 1.0.0";
+            this.label1.Text = "Serial Port Terminal v 1.2.0";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
@@ -76,7 +76,7 @@ namespace SerialPortUtility
             this.label3.Text = "Open Support for : PLC, Scada , Microcontroller Project";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // about_form
+            // AboutForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -86,7 +86,7 @@ namespace SerialPortUtility
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "about_form";
+            this.Name = "AboutForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "About";
             this.ResumeLayout(false);

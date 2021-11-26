@@ -3,17 +3,17 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 //Add Using
 using System.IO.Ports;
-using NumberFromString;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace SerialPortUtility
 {
-    public partial class main_frm : Form
+    public partial class MainForm : Form
     {
-        public main_frm()
+        public MainForm()
         {
             InitializeComponent();
             // Init Program
@@ -23,24 +23,24 @@ namespace SerialPortUtility
         /*=====================Public variable & function=============================*/
 
         //Main Port
-        public static SerialPort main_port = new SerialPort();
+        public static SerialPort mainPort = new SerialPort();
 
         // Log Setting
-        public static string rx_name;
-        public static string tx_name;
+        public static string rxName;
+        public static string txName;
 
-        public static bool wordwrap_enable;
-        public static bool txlog_enable;
-        public static bool info_enable;
-        public static bool rxname_enable;
-        public static bool txname_enable;
+        public static bool wordwarpEnable;
+        public static bool txLogEnable;
+        public static bool infoEnable;
+        public static bool rxNameEnable;
+        public static bool txNameEnable;
 
-        public static Color rx_color = Color.Red;
-        public static Color tx_color = Color.Blue;
-        public static Color inf_color = Color.Orange;
-        public static Font rx_font ;
-        public static Font tx_font ;
-        public static Font inf_font ;
+        public static Color rxColor = Color.Red;
+        public static Color txColor = Color.Blue;
+        public static Color infColor = Color.Orange;
+        public static Font rxFont ;
+        public static Font txFont ;
+        public static Font infFont ;
 
        /*=====================Private variable & function============================*/
 
@@ -69,8 +69,8 @@ namespace SerialPortUtility
         private bool bin_enabled;
 
         // Add Number From String
-        private numberfromstring numberToSend = new numberfromstring();
-        private numberfromstring numberReceive = new numberfromstring();
+        private NumberString numberToSend = new NumberString();
+        private NumberString numberReceive = new NumberString();
 
         // Textbox Send History
         private AutoCompleteStringCollection ascii_history = new AutoCompleteStringCollection();
@@ -87,9 +87,9 @@ namespace SerialPortUtility
         private void SPU_Initialize()
         {
             // Serial Port Init
-            main_port.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
-            main_port.WriteTimeout = 2000;
-            main_port.ReadTimeout = 2000;
+            mainPort.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler);
+            mainPort.WriteTimeout = 2000;
+            mainPort.ReadTimeout = 2000;
 
             // Load Setting...
             LoadSetting();
@@ -110,11 +110,11 @@ namespace SerialPortUtility
 
         private void Port_open_close_act()
         {
-            send_btn.Enabled = main_port.IsOpen; // Enable/Disable Send Button
-            if (main_port.IsOpen == true)
+            send_btn.Enabled = mainPort.IsOpen; // Enable/Disable Send Button
+            if (mainPort.IsOpen == true)
             {
                 open_btn.Text = "Disconnect";
-                status_bar.Text = "Connected to : " + main_port.PortName;
+                status_bar.Text = "Connected to : " + mainPort.PortName;
                 
             }
             else
@@ -132,7 +132,7 @@ namespace SerialPortUtility
             hex_check.Checked = hex_enabled;
             bin_check.Checked = bin_enabled;
 
-            string_rtb.WordWrap = wordwrap_enable;
+            string_rtb.WordWrap = wordwarpEnable;
         }
 
         // Serial Port Receive -------------------------------------------------------*
@@ -150,12 +150,12 @@ namespace SerialPortUtility
 
         private void Update_label()
         {
-            string txt_baud = Convert.ToString(main_port.BaudRate);
-            string txt_data = Convert.ToString(main_port.DataBits);
-            string txt_stop = Convert.ToString(main_port.StopBits);
-            string txt_parity = Convert.ToString(main_port.Parity);
+            string txt_baud = Convert.ToString(mainPort.BaudRate);
+            string txt_data = Convert.ToString(mainPort.DataBits);
+            string txt_stop = Convert.ToString(mainPort.StopBits);
+            string txt_parity = Convert.ToString(mainPort.Parity);
 
-            string label_buffer ="Port Setting : "+ main_port.PortName + "-" + txt_baud + "-" + txt_data + "-" + txt_stop + "-" + txt_parity+" (Click to change...)";
+            string label_buffer ="Port Setting : "+ mainPort.PortName + "-" + txt_baud + "-" + txt_data + "-" + txt_stop + "-" + txt_parity+" (Click to change...)";
             setting_btn.Text = label_buffer;
         }
 
@@ -181,38 +181,38 @@ namespace SerialPortUtility
 
             if (_type == 0) // Append info
             {
-                if (info_enable)
+                if (infoEnable)
                 {
                     string temp = date_time_txt + "System : [INFO] " + _text_in;
-                    Append_log(temp, inf_color, inf_font);
+                    Append_log(temp, infColor, infFont);
                 }
                 
             }
             else if (_type == 1) //Receive Log
             {
-                set_text_log(numberReceive);
+                SetTextLog(numberReceive);
 
                 string _tempname;
-                if (rxname_enable) _tempname = rx_name + " : ";
+                if (rxNameEnable) _tempname = rxName + " : ";
                 else _tempname = String.Empty;
 
                 // Safe Write
                 string _temp = date_time_txt + _tempname + ascii_txt + dec_txt + hex_txt + bin_txt ;
-                SafeWriteText(_temp, rx_color , 0 , rx_font);
+                SafeWriteText(_temp, rxColor , 0 , rxFont);
             }
             else if (_type == 2 ) // Transmit Log
             {
-                if (txlog_enable)
+                if (txLogEnable)
                 {
                     
-                    set_text_log(numberToSend);
+                    SetTextLog(numberToSend);
 
                     string _tempname;
-                    if (txname_enable) _tempname = tx_name + " : ";
+                    if (txNameEnable) _tempname = txName + " : ";
                     else _tempname = String.Empty;
 
                     string _temp = date_time_txt + _tempname + ascii_txt + dec_txt + hex_txt + bin_txt;
-                    Append_log(_temp, tx_color, tx_font);
+                    Append_log(_temp, txColor, txFont);
                 }
                 
             }
@@ -235,19 +235,29 @@ namespace SerialPortUtility
             string_rtb.SelectionStart = string_rtb.Text.Length;
             string_rtb.ScrollToCaret();
         }
-        private void set_text_log(numberfromstring _numobj)
+        private void SetTextLog(NumberString _numobj)
         {
+
+            bool textOnly = ascii_enabled & !(time_enabled | dec_enabled | hex_enabled | bin_enabled);
+            bool decOnly = dec_enabled & !(time_enabled | ascii_enabled | hex_enabled | bin_enabled);
+            bool hexOnly = hex_enabled & !(time_enabled | dec_enabled | ascii_enabled | bin_enabled);
+            bool binOnly = bin_enabled & !(time_enabled | dec_enabled | hex_enabled | ascii_enabled);
+
             // Initialize....................
-            if (ascii_enabled) ascii_txt = "[ASCII] "+_numobj.get_string() +" ";
+            if (ascii_enabled && !textOnly) ascii_txt = "[ASCII] " + _numobj.get_string() + " ";
+            else if (ascii_enabled && textOnly) ascii_txt =_numobj.get_string();
             else ascii_txt = string.Empty;
 
-            if (dec_enabled) dec_txt = "[DEC] " + _numobj.get_string_dec() + " ";
+            if (dec_enabled && !decOnly) dec_txt = "[DEC] " + _numobj.get_string_dec() + " ";
+            else if (dec_enabled && decOnly) dec_txt = _numobj.get_string_dec();
             else dec_txt = string.Empty;
 
-            if (hex_enabled) hex_txt = "[HEX] " + _numobj.get_string_hex() + " ";
+            if (hex_enabled && !hexOnly) hex_txt = "[HEX] " + _numobj.get_string_hex() + " ";
+            else if (hex_enabled && hexOnly) hex_txt = _numobj.get_string_hex();
             else hex_txt = string.Empty;
 
-            if (bin_enabled) bin_txt = "[BIN] " + _numobj.get_string_bin() + " ";
+            if (bin_enabled && !binOnly) bin_txt = "[BIN] " + _numobj.get_string_bin() + " ";
+            if (bin_enabled && binOnly) bin_txt = _numobj.get_string_bin();
             else bin_txt = string.Empty;
         }
 
@@ -274,31 +284,32 @@ namespace SerialPortUtility
         private void LoadSetting()
         {
             // Comm Port
-            main_port.PortName = AppSetting.Default.ComName;
-            main_port.BaudRate = AppSetting.Default.ComBaudRate;
-            main_port.DataBits = AppSetting.Default.ComDataBit;
-            main_port.Parity = AppSetting.Default.ComParity;
-            main_port.StopBits = AppSetting.Default.ComStopBits;
-            main_port.Handshake = AppSetting.Default.ComHandshake;
+            
+            mainPort.PortName = AppSetting.Default.ComName;
+            mainPort.BaudRate = AppSetting.Default.ComBaudRate;
+            mainPort.DataBits = AppSetting.Default.ComDataBit;
+            mainPort.Parity = AppSetting.Default.ComParity;
+            mainPort.StopBits = AppSetting.Default.ComStopBits;
+            mainPort.Handshake = AppSetting.Default.ComHandshake;
 
             // Sending
             sendtype_cmb.SelectedIndex = AppSetting.Default.SendType;
             append_cmb.SelectedIndex = AppSetting.Default.SendAppend;
 
             // Logging
-            wordwrap_enable = AppSetting.Default.LogWordWrap;
-            tx_name = AppSetting.Default.LogTxName;
-            rx_name = AppSetting.Default.LogRxName;
-            tx_font = AppSetting.Default.LogTxFont;
-            rx_font = AppSetting.Default.LogRxFont;
-            inf_font = AppSetting.Default.LogInfFont;
-            tx_color = AppSetting.Default.LogTXColor;
-            rx_color = AppSetting.Default.LogRXColor;
-            inf_color = AppSetting.Default.LogInfoColor;
-            txlog_enable = AppSetting.Default.LogTxEn;
-            info_enable = AppSetting.Default.LogInfoEn;
-            txname_enable = AppSetting.Default.LogTxNameEn;
-            rxname_enable = AppSetting.Default.LogRxNameEn;
+            wordwarpEnable = AppSetting.Default.LogWordWrap;
+            txName = AppSetting.Default.LogTxName;
+            rxName = AppSetting.Default.LogRxName;
+            txFont = AppSetting.Default.LogTxFont;
+            rxFont = AppSetting.Default.LogRxFont;
+            infFont = AppSetting.Default.LogInfFont;
+            txColor = AppSetting.Default.LogTXColor;
+            rxColor = AppSetting.Default.LogRXColor;
+            infColor = AppSetting.Default.LogInfoColor;
+            txLogEnable = AppSetting.Default.LogTxEn;
+            infoEnable = AppSetting.Default.LogInfoEn;
+            txNameEnable = AppSetting.Default.LogTxNameEn;
+            rxNameEnable = AppSetting.Default.LogRxNameEn;
             time_enabled = AppSetting.Default.LogTime;
             ascii_enabled = AppSetting.Default.LogASCII;
             dec_enabled = AppSetting.Default.LogDEC;
@@ -309,36 +320,37 @@ namespace SerialPortUtility
 
         private void SaveSetting()
         {
-            AppSetting.Default.ComName = main_port.PortName;
-            AppSetting.Default.ComBaudRate = main_port.BaudRate;
-            AppSetting.Default.ComDataBit = main_port.DataBits;
-            AppSetting.Default.ComParity = main_port.Parity;
-            AppSetting.Default.ComStopBits = main_port.StopBits;
-            AppSetting.Default.ComHandshake = main_port.Handshake;
+            AppSetting.Default.ComName = mainPort.PortName;
+            AppSetting.Default.ComBaudRate = mainPort.BaudRate;
+            AppSetting.Default.ComDataBit = mainPort.DataBits;
+            AppSetting.Default.ComParity = mainPort.Parity;
+            AppSetting.Default.ComStopBits = mainPort.StopBits;
+            AppSetting.Default.ComHandshake = mainPort.Handshake;
+         
 
             // Sending
             AppSetting.Default.SendType = sendtype_cmb.SelectedIndex;
             AppSetting.Default.SendAppend = append_cmb.SelectedIndex;
 
             // Logging
-            AppSetting.Default.LogWordWrap = wordwrap_enable;
+            AppSetting.Default.LogWordWrap = wordwarpEnable;
 
-            AppSetting.Default.LogTxName = tx_name;
-            AppSetting.Default.LogRxName = rx_name;
+            AppSetting.Default.LogTxName = txName;
+            AppSetting.Default.LogRxName = rxName;
 
-            AppSetting.Default.LogTxFont = tx_font;
-            AppSetting.Default.LogRxFont = rx_font;
-            AppSetting.Default.LogInfFont = inf_font;
+            AppSetting.Default.LogTxFont = txFont;
+            AppSetting.Default.LogRxFont = rxFont;
+            AppSetting.Default.LogInfFont = infFont;
 
-            AppSetting.Default.LogTXColor = tx_color;
-            AppSetting.Default.LogRXColor = rx_color;
-            AppSetting.Default.LogInfoColor = inf_color;
+            AppSetting.Default.LogTXColor = txColor;
+            AppSetting.Default.LogRXColor = rxColor;
+            AppSetting.Default.LogInfoColor = infColor;
 
-            AppSetting.Default.LogTxEn = txlog_enable;
-            AppSetting.Default.LogInfoEn = info_enable;
+            AppSetting.Default.LogTxEn = txLogEnable;
+            AppSetting.Default.LogInfoEn = infoEnable;
 
-            AppSetting.Default.LogTxNameEn = txname_enable;
-            AppSetting.Default.LogRxNameEn = rxname_enable;
+            AppSetting.Default.LogTxNameEn = txNameEnable;
+            AppSetting.Default.LogRxNameEn = rxNameEnable;
 
             AppSetting.Default.LogTime = time_enabled;
             AppSetting.Default.LogASCII = ascii_enabled;
@@ -356,20 +368,20 @@ namespace SerialPortUtility
             try
             {
                 // Code to try goes here.
-                if (main_port.IsOpen != true)
+                if (mainPort.IsOpen != true)
                 {
-                    main_port.Open();
+                    mainPort.Open();
                     
                     if (!first_connect)
                     {
                         string_rtb.Clear();
                         first_connect = true;
                     }
-                    log_act(0, "Port Connected to : " + main_port.PortName);
+                    log_act(0, "Port Connected to : " + mainPort.PortName);
                 }
                 else
                 {
-                    main_port.Close();
+                    mainPort.Close();
                     log_act(0, "Port Disconnected.");
 
                     rx_count = 0;
@@ -395,7 +407,7 @@ namespace SerialPortUtility
         //----------------------****************************------------------------------------
         private void send_btn_Click(object sender, EventArgs e)
         {
-            if (main_port.IsOpen==true)
+            if (mainPort.IsOpen==true)
             {
                 string text_send = sendstring_txt.Text;
                 if (append_text != null) text_send += append_text;
@@ -404,19 +416,19 @@ namespace SerialPortUtility
                 {
                     if (conv_result == 0)
                     {
-                        main_port.Write(number_send, 0, number_send.Length);
+                        mainPort.Write(number_send, 0, number_send.Length);
                         log_act(2, text_send);
                         tx_count += (uint)numberToSend.get_number_count();
                         txcount_lbl.Text = tx_count.ToString();
                     }
                     else if (conv_result == 3)
                     {
-                        main_port.Write(text_send);
+                        mainPort.Write(text_send);
                         log_act(2, text_send);
                         tx_count += (uint)numberToSend.get_number_count();
                         txcount_lbl.Text = tx_count.ToString();
                     }
-                    main_port.DiscardOutBuffer();
+                    mainPort.DiscardOutBuffer();
                     add_history(sendstring_txt.Text);
                     sendstring_txt.Clear();
                 }
@@ -431,7 +443,7 @@ namespace SerialPortUtility
 
         private void setting_btn_Click(object sender, EventArgs e)
         {
-            setting_frm set_frm = new setting_frm();
+            PortSettingForm set_frm = new PortSettingForm();
             set_frm.Show();
         }
 
@@ -439,7 +451,7 @@ namespace SerialPortUtility
         {
             Update_label();
             Port_open_close_act();
-            string_rtb.WordWrap = wordwrap_enable;
+            string_rtb.WordWrap = wordwarpEnable;
         }
 
         private void clear_btn_Click(object sender, EventArgs e)
@@ -536,8 +548,8 @@ namespace SerialPortUtility
 
         private void about_btn_Click(object sender, EventArgs e)
         {
-            about_form a_frm = new about_form();
-            a_frm.Show();
+            AboutForm a_frm = new AboutForm();
+            a_frm.ShowDialog();
         }
 
         private void main_frm_FormClosing(object sender, FormClosingEventArgs e)
@@ -547,8 +559,8 @@ namespace SerialPortUtility
 
         private void log_setting_btn_Click(object sender, EventArgs e)
         {
-            log_setting log_frm = new log_setting();
-            log_frm.Show();
+            LogSettingForm log_frm = new LogSettingForm();
+            log_frm.ShowDialog();
         }
 
         private void sendstring_txt_KeyUp(object sender, KeyEventArgs e)

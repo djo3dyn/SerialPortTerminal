@@ -27,6 +27,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -51,6 +53,10 @@
   <PropertyGroup>
     <ApplicationIcon>icon_wcq_icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>
+    </StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -60,49 +66,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="log_setting.cs">
+    <Compile Include="LogSettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="log_setting.Designer.cs">
-      <DependentUpon>log_setting.cs</DependentUpon>
+    <Compile Include="LogSettingForm.Designer.cs">
+      <DependentUpon>LogSettingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="main_form.cs">
+    <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="main_form.Designer.cs">
-      <DependentUpon>main_form.cs</DependentUpon>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="AppSetting.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>AppSetting.settings</DependentUpon>
     </Compile>
-    <Compile Include="setting_form.cs">
+    <Compile Include="LogSettingContainer.cs" />
+    <Compile Include="PortSettingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="setting_form.Designer.cs">
-      <DependentUpon>setting_form.cs</DependentUpon>
+    <Compile Include="PortSettingForm.Designer.cs">
+      <DependentUpon>PortSettingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="about_form.cs">
+    <Compile Include="AboutForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="about_form.Designer.cs">
-      <DependentUpon>about_form.cs</DependentUpon>
+    <Compile Include="AboutForm.Designer.cs">
+      <DependentUpon>AboutForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="numberfromstring.cs" />
+    <Compile Include="NumberString.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="log_setting.resx">
-      <DependentUpon>log_setting.cs</DependentUpon>
+    <EmbeddedResource Include="LogSettingForm.resx">
+      <DependentUpon>LogSettingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="main_form.resx">
-      <DependentUpon>main_form.cs</DependentUpon>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="setting_form.resx">
-      <DependentUpon>setting_form.cs</DependentUpon>
+    <EmbeddedResource Include="PortSettingForm.resx">
+      <DependentUpon>PortSettingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="about_form.resx">
-      <DependentUpon>about_form.cs</DependentUpon>
+    <EmbeddedResource Include="AboutForm.resx">
+      <DependentUpon>AboutForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

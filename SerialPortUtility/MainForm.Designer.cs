@@ -1,6 +1,6 @@
 ﻿namespace SerialPortUtility
 {
-    partial class main_frm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(main_frm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.open_btn = new System.Windows.Forms.Button();
             this.send_btn = new System.Windows.Forms.Button();
             this.sendstring_txt = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status_bar = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.rxcount_lbl = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.txcount_lbl = new System.Windows.Forms.ToolStripStatusLabel();
             this.string_rtb = new System.Windows.Forms.RichTextBox();
             this.setting_btn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -54,11 +59,6 @@
             this.clear_btn = new System.Windows.Forms.Button();
             this.about_btn = new System.Windows.Forms.Button();
             this.input_err_prov = new System.Windows.Forms.ErrorProvider(this.components);
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.rxcount_lbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.txcount_lbl = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -80,7 +80,7 @@
             // send_btn
             // 
             this.send_btn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.send_btn.Location = new System.Drawing.Point(700, 52);
+            this.send_btn.Location = new System.Drawing.Point(697, 54);
             this.send_btn.Name = "send_btn";
             this.send_btn.Size = new System.Drawing.Size(110, 26);
             this.send_btn.TabIndex = 3;
@@ -95,7 +95,7 @@
             this.sendstring_txt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.sendstring_txt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.sendstring_txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sendstring_txt.Location = new System.Drawing.Point(16, 54);
+            this.sendstring_txt.Location = new System.Drawing.Point(13, 56);
             this.sendstring_txt.Name = "sendstring_txt";
             this.sendstring_txt.Size = new System.Drawing.Size(663, 22);
             this.sendstring_txt.TabIndex = 0;
@@ -125,6 +125,36 @@
             this.status_bar.Size = new System.Drawing.Size(108, 20);
             this.status_bar.Text = "Disconnected...";
             // 
+            // toolStripStatusLabel2
+            // 
+            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
+            this.toolStripStatusLabel2.Size = new System.Drawing.Size(27, 20);
+            this.toolStripStatusLabel2.Text = "---";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(115, 20);
+            this.toolStripStatusLabel1.Text = "Received Bytes :";
+            // 
+            // rxcount_lbl
+            // 
+            this.rxcount_lbl.Name = "rxcount_lbl";
+            this.rxcount_lbl.Size = new System.Drawing.Size(17, 20);
+            this.rxcount_lbl.Text = "0";
+            // 
+            // toolStripStatusLabel3
+            // 
+            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
+            this.toolStripStatusLabel3.Size = new System.Drawing.Size(133, 20);
+            this.toolStripStatusLabel3.Text = "Transmitted Bytes :";
+            // 
+            // txcount_lbl
+            // 
+            this.txcount_lbl.Name = "txcount_lbl";
+            this.txcount_lbl.Size = new System.Drawing.Size(17, 20);
+            this.txcount_lbl.Text = "0";
+            // 
             // string_rtb
             // 
             this.string_rtb.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -138,10 +168,10 @@
             this.string_rtb.Location = new System.Drawing.Point(16, 64);
             this.string_rtb.Name = "string_rtb";
             this.string_rtb.ReadOnly = true;
-            this.string_rtb.Size = new System.Drawing.Size(794, 509);
+            this.string_rtb.Size = new System.Drawing.Size(794, 484);
             this.string_rtb.TabIndex = 5;
-            this.string_rtb.Text = "Serial Port Utility is Initialized...\nConnect to Port, Send and receive log goes " +
-    "here...";
+            this.string_rtb.Text = "Serial Port Terminal is Initialized...\nConnect to Port, Send and receive log goes" +
+    " here...";
             this.string_rtb.WordWrap = false;
             // 
             // setting_btn
@@ -169,9 +199,9 @@
             this.groupBox1.Controls.Add(this.sendstring_txt);
             this.groupBox1.Controls.Add(this.send_btn);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 640);
+            this.groupBox1.Location = new System.Drawing.Point(12, 615);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(822, 96);
+            this.groupBox1.Size = new System.Drawing.Size(822, 104);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Send";
@@ -180,7 +210,7 @@
             // 
             this.note_lbl.AutoSize = true;
             this.note_lbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.note_lbl.Location = new System.Drawing.Point(13, 77);
+            this.note_lbl.Location = new System.Drawing.Point(16, 81);
             this.note_lbl.Name = "note_lbl";
             this.note_lbl.Size = new System.Drawing.Size(680, 15);
             this.note_lbl.TabIndex = 25;
@@ -231,7 +261,7 @@
             this.sendtype_cmb.FormattingEnabled = true;
             this.sendtype_cmb.ItemHeight = 16;
             this.sendtype_cmb.Items.AddRange(new object[] {
-            "ASCII",
+            "Text",
             "DEC",
             "HEX",
             "BIN"});
@@ -257,7 +287,7 @@
             this.groupBox2.Controls.Add(this.string_rtb);
             this.groupBox2.Location = new System.Drawing.Point(12, 44);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(822, 590);
+            this.groupBox2.Size = new System.Drawing.Size(822, 565);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Terminal Log";
@@ -326,9 +356,9 @@
             this.ascii_check.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ascii_check.Location = new System.Drawing.Point(203, 29);
             this.ascii_check.Name = "ascii_check";
-            this.ascii_check.Size = new System.Drawing.Size(63, 21);
+            this.ascii_check.Size = new System.Drawing.Size(57, 21);
             this.ascii_check.TabIndex = 8;
-            this.ascii_check.Text = "ASCII";
+            this.ascii_check.Text = "Text";
             this.ascii_check.UseVisualStyleBackColor = true;
             this.ascii_check.Click += new System.EventHandler(this.All_CheckedChanged);
             // 
@@ -373,37 +403,7 @@
             this.input_err_prov.BlinkStyle = System.Windows.Forms.ErrorBlinkStyle.AlwaysBlink;
             this.input_err_prov.ContainerControl = this;
             // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(115, 20);
-            this.toolStripStatusLabel1.Text = "Received Bytes :";
-            // 
-            // rxcount_lbl
-            // 
-            this.rxcount_lbl.Name = "rxcount_lbl";
-            this.rxcount_lbl.Size = new System.Drawing.Size(17, 20);
-            this.rxcount_lbl.Text = "0";
-            // 
-            // toolStripStatusLabel3
-            // 
-            this.toolStripStatusLabel3.Name = "toolStripStatusLabel3";
-            this.toolStripStatusLabel3.Size = new System.Drawing.Size(133, 20);
-            this.toolStripStatusLabel3.Text = "Transmitted Bytes :";
-            // 
-            // txcount_lbl
-            // 
-            this.txcount_lbl.Name = "txcount_lbl";
-            this.txcount_lbl.Size = new System.Drawing.Size(17, 20);
-            this.txcount_lbl.Text = "0";
-            // 
-            // toolStripStatusLabel2
-            // 
-            this.toolStripStatusLabel2.Name = "toolStripStatusLabel2";
-            this.toolStripStatusLabel2.Size = new System.Drawing.Size(27, 20);
-            this.toolStripStatusLabel2.Text = "---";
-            // 
-            // main_frm
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -417,7 +417,7 @@
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(864, 804);
-            this.Name = "main_frm";
+            this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Serial Port Terminal";
             this.Activated += new System.EventHandler(this.main_frm_Activated);

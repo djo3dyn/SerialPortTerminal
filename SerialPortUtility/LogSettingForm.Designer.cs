@@ -1,7 +1,7 @@
 ﻿
 namespace SerialPortUtility
 {
-    partial class log_setting
+    partial class LogSettingForm
     {
         /// <summary>
         /// Required designer variable.

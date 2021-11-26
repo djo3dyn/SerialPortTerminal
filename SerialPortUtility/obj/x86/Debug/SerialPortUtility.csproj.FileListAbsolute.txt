@@ -20,3 +20,16 @@ D:\Visual C++C#\SerialPortUtility\SerialPortUtility\obj\x86\Debug\SerialPortUtil
 D:\Visual C++C#\SerialPortUtility\SerialPortUtility\obj\x86\Debug\Serial Port Terminal.exe
 D:\Visual C++C#\SerialPortUtility\SerialPortUtility\obj\x86\Debug\Serial Port Terminal.pdb
 D:\Visual C++C#\SerialPortUtility\SerialPortUtility\obj\x86\Debug\SerialPortUtility.csproj.AssemblyReference.cache
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\bin\Debug\Serial Port Terminal.exe.config
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\bin\Debug\Serial Port Terminal.exe
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\bin\Debug\Serial Port Terminal.pdb
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\obj\x86\Debug\SerialPortUtility.csproj.AssemblyReference.cache
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\obj\x86\Debug\SerialPortUtility.Properties.Resources.resources
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\obj\x86\Debug\SerialPortUtility.csproj.GenerateResource.cache
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\obj\x86\Debug\SerialPortUtility.csproj.CoreCompileInputs.cache
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\obj\x86\Debug\Serial Port Terminal.exe
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\obj\x86\Debug\Serial Port Terminal.pdb
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\obj\x86\Debug\SerialPortUtility.AboutForm.resources
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\obj\x86\Debug\SerialPortUtility.LogSettingForm.resources
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\obj\x86\Debug\SerialPortUtility.PortSettingForm.resources
+D:\Visual Studio\ReleaseProject\SerialPortTerminalv1.2\SerialPortUtility\obj\x86\Debug\SerialPortUtility.MainForm.resources

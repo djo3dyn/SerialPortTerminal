@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace SerialPortUtility
 {
-    public partial class log_setting : Form
+    public partial class LogSettingForm : Form
     {
         private FontDialog fontDlg = new FontDialog();
         private ColorDialog colorDlg = new ColorDialog();
@@ -29,7 +29,7 @@ namespace SerialPortUtility
         private Font tx_font;
         private Font inf_font;
 
-        public log_setting()
+        public LogSettingForm()
         {
             InitializeComponent();
             load_setting();
@@ -37,52 +37,52 @@ namespace SerialPortUtility
 
         private void set_setting()
         {
-            main_frm.rx_name = rx_name;
-            main_frm.tx_name = tx_name;
+            MainForm.rxName = rx_name;
+            MainForm.txName = tx_name;
 
-            main_frm.wordwrap_enable = wordwrap_enable;
-            main_frm.txlog_enable = txlog_enable;
-            main_frm.info_enable = info_enable;
-            main_frm.rxname_enable = rxname_enable ;
-            main_frm.txname_enable = txname_enable ;
+            MainForm.wordwarpEnable = wordwrap_enable;
+            MainForm.txLogEnable = txlog_enable;
+            MainForm.infoEnable = info_enable;
+            MainForm.rxNameEnable = rxname_enable ;
+            MainForm.txNameEnable = txname_enable ;
 
-            main_frm.rx_color = rx_color;
-            main_frm.tx_color = tx_color;
-            main_frm.inf_color = inf_color;
-            main_frm.rx_font = rx_font;
-            main_frm.tx_font = tx_font;
-            main_frm.inf_font = inf_font;
+            MainForm.rxColor = rx_color;
+            MainForm.txColor = tx_color;
+            MainForm.infColor = inf_color;
+            MainForm.rxFont = rx_font;
+            MainForm.txFont = tx_font;
+            MainForm.infFont = inf_font;
         }
 
         private void load_setting()
         {
-            rx_name = main_frm.rx_name;
+            rx_name = MainForm.rxName;
             rxname_txt.Text = rx_name; // Set
-            tx_name = main_frm.tx_name;
+            tx_name = MainForm.txName;
             txname_txt.Text = tx_name; // Set
 
-            wordwrap_enable = main_frm.wordwrap_enable;
-            wordwrap_check.Checked = main_frm.wordwrap_enable;
-            txlog_enable = main_frm.txlog_enable;
+            wordwrap_enable = MainForm.wordwarpEnable;
+            wordwrap_check.Checked = MainForm.wordwarpEnable;
+            txlog_enable = MainForm.txLogEnable;
             tx_log_check.Checked = txlog_enable;// check set
-            info_enable = main_frm.info_enable;
+            info_enable = MainForm.infoEnable;
             info_check.Checked = info_enable; // set
-            rxname_enable = main_frm.rxname_enable;
+            rxname_enable = MainForm.rxNameEnable;
             showrx_check.Checked = rxname_enable; // set
-            txname_enable = main_frm.txname_enable;
+            txname_enable = MainForm.txNameEnable;
             showtx_check.Checked = txname_enable; // set
 
-            rx_color = main_frm.rx_color;
+            rx_color = MainForm.rxColor;
             rxcolor_txt.Text = rx_color.Name.ToString();
-            tx_color = main_frm.tx_color;
+            tx_color = MainForm.txColor;
             txcolor_txt.Text = tx_color.Name.ToString();
-            inf_color = main_frm.inf_color;
+            inf_color = MainForm.infColor;
             infocolor_txt.Text = inf_color.Name.ToString();
-            rx_font = main_frm.rx_font;
+            rx_font = MainForm.rxFont;
             rxfont_txt.Text = rx_font.Name.ToString()+","+ rx_font.Size.ToString();
-            tx_font = main_frm.tx_font;
+            tx_font = MainForm.txFont;
             txfont_txt.Text = tx_font.Name.ToString() + "," + tx_font.Size.ToString(); ;
-            inf_font = main_frm.inf_font;
+            inf_font = MainForm.infFont;
             infofont_txt.Text = inf_font.Name.ToString() + "," + inf_font.Size.ToString(); ;
         }
 

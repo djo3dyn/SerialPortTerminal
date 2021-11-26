@@ -8,9 +8,9 @@ using System.Windows.Forms;
 
 namespace SerialPortUtility
 {
-    public partial class about_form : Form
+    public partial class AboutForm : Form
     {
-        public about_form()
+        public AboutForm()
         {
             InitializeComponent();
         }

@@ -14,7 +14,7 @@ namespace SerialPortUtility
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new main_frm());
+            Application.Run(new MainForm());
         }
     }
 }
