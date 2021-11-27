@@ -1,9 +1,7 @@
 #
 # Standard Maven .gitignore
 #
-bin/
-obj/
-publish/
+Installer/
 
 #
 # Visual Studio Code
